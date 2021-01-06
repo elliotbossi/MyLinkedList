@@ -13,5 +13,17 @@ public class Node{
    data = v;
  }
 
+ public Node getPrevious(){
+   return prev;
+ }
+ public void setPrevious(Node v){
+   prev = v;
+ }
 
+ public Node getNext(){
+   return next;
+ }
+ public void setNext(Node v){
+   next = v;
+ }
 }
