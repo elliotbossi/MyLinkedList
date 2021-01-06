@@ -54,7 +54,12 @@ public class MyLinkedList{
      size = size + 1;
      add(value);
    }
-   
+   Node newnode1 = start;
+		for (int i = 0; i < index; i++) {
+			newnode1 = newnode1.getNext();
+
+			if (newnode1 == null) throw new IndexOutOfBoundsException();
+		}
     Node prev = newnode1.getPrevious();
 		Node next = newnode1.getNext();
 
@@ -69,7 +74,20 @@ public class MyLinkedList{
    return true;
  }
 
- public String get(int index);
+ public String get(int index){
+   if ((index < 0)||(index > size-1)) {
+      throw new IndexOutOfBoundsException();
+    }
+    Node newnode = start;
+    int i = 0;
+    while (i < index){
+      newnode = start.getNext();
+      i = i + 1;
+    }
+    return newnode.getData();
+ }
+
+
  public String set(int index, String value);
  public String toString();
  //Any helper method that returns a Node object MUST BE PRIVATE!
