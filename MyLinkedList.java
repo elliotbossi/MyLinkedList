@@ -26,6 +26,7 @@ public class MyLinkedList{
    }
  }
 
+
  public boolean add(int index, String value){
    if ((index > size)||(index < 0)){
      throw new IndexOutOfBoundsException();
@@ -74,6 +75,7 @@ public class MyLinkedList{
    return true;
  }
 
+
  public String get(int index){
    if ((index < 0)||(index > size-1)) {
       throw new IndexOutOfBoundsException();
@@ -88,7 +90,34 @@ public class MyLinkedList{
  }
 
 
- public String set(int index, String value);
- public String toString();
+ public String set(int index, String value){
+   if ((index < 0) || (index > size-1)) {
+     throw new IndexOutOfBoundsException();
+    }
+    Node newnode = start;
+    int i = 0;
+    while (i < index){
+      newnode = newnode.getNext();
+      i = i + 1;
+    }
+    String temp = newnode.getData();
+    newnode.setData(value);
+    return temp;
+ }
+
+
+ public String toString(){
+   if (size==0){
+     return "[]";
+   }
+   String result = "[";
+   Node newnode = start;
+   while (newnode.getNext() != null){
+     result = result + newnode.getData + ", ";
+     newnode = newnode.getNext();
+   }
+   result = result + newnode.getData() + "]";
+   return result;
+ }
  //Any helper method that returns a Node object MUST BE PRIVATE!
 }
