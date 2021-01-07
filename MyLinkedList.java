@@ -84,7 +84,7 @@ public class MyLinkedList{
     Node newnode = start;
     int i = 0;
     while (i < index){
-      newnode = start.getNext();
+      newnode = newnode.getNext();
       i = i + 1;
     }
     return newnode.getData();
