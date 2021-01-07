@@ -38,11 +38,11 @@ public class MyLinkedList{
      end = newnode;
      size = size + 1;
    }
-   else if (index==size-1){
+   else if (index==size){
      Node newnode = new Node(value);
      end.setNext(newnode);
+     newnode.setPrevious(end);
      end = newnode;
-
    }
    else if (index==0){
 
@@ -57,10 +57,10 @@ public class MyLinkedList{
      Node newnode10 = new Node(value);
      ///////////////////////////////////////
              if ((index-1) == 0){
-               Node newPrev = start;
+               Node newP = start;
              }
              if ((index-1) == size - 1){
-               Node newPrev = end;
+               Node newP = end;
              }
 
              Node newnode = start;
@@ -69,13 +69,13 @@ public class MyLinkedList{
                  newnode = newnode.getNext();
                  i++;
              }
-             Node newPrev = newnode;
+             Node newP = newnode;
      ///////////////////////////////////////
              if ((index) == 0){
-               Node newNext = start;
+               Node newN = start;
              }
              if ((index) == size - 1){
-               Node newNext = end;
+               Node newN = end;
              }
 
              Node newnode1 = start;
@@ -84,12 +84,12 @@ public class MyLinkedList{
                  newnode1 = newnode1.getNext();
                  x++;
              }
-             Node newNext = newnode1;
+             Node newN = newnode1;
        ///////////////////////////////////////
-        newnode10.setPrevious(newPrev);
-        newnode10.setNext(newNext);
-        newPrev.setNext(newnode10);
-        newNext.setPrevious(newnode10);
+        newnode10.setPrevious(newP);
+        newnode10.setNext(newN);
+        newP.setNext(newnode10);
+        newN.setPrevious(newnode10);
    }
 
    size = size + 1;
@@ -139,6 +139,28 @@ public class MyLinkedList{
    }
    result = result + newnode.getData() + "]";
    return result;
+ }
+
+ public String toStringReversed(){
+   if (size==0){
+     return "[]";
+   }
+   String result = "[";
+   Node newnode = end;
+   while (newnode.getPrevious() != null){
+     result = result + newnode.getData() + ", ";
+     newnode = newnode.getPrevious();
+   }
+   result = result + newnode.getData() + "]";
+   return result;
+ }
+
+ public String remove(int index){
+   return "";
+ }
+
+ public void extend(MyLinkedList other){
+
  }
  //Any helper method that returns a Node object MUST BE PRIVATE!
 }
