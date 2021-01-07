@@ -33,48 +33,68 @@ public class MyLinkedList{
      throw new IndexOutOfBoundsException();
    }
    if (size==0){
-     size = size + 1;
      Node newnode = new Node(value);
      start = newnode;
      end = newnode;
-   }
-   if (index==0){
      size = size + 1;
+   }
+   else if (index==size-1){
+     Node newnode = new Node(value);
+     end.setNext(newnode);
+     end = newnode;
+
+   }
+   else if (index==0){
+
      Node newnode = new Node(value);
      start.setPrevious(newnode);
      newnode.setNext(start);
      start = newnode;
    }
-   if (index==size-1){
-     size = size + 1;
-     Node newnode = new Node(value);
-     end.setNext(newnode);
-     newnode.setPrevious(end);
-     end = newnode;
+
+   else{
+
+     Node newnode10 = new Node(value);
+     ///////////////////////////////////////
+             if ((index-1) == 0){
+               Node newPrev = start;
+             }
+             if ((index-1) == size - 1){
+               Node newPrev = end;
+             }
+
+             Node newnode = start;
+             int i = 0;
+             while (i < (index-1)) {
+                 newnode = newnode.getNext();
+                 i++;
+             }
+             Node newPrev = newnode;
+     ///////////////////////////////////////
+             if ((index) == 0){
+               Node newNext = start;
+             }
+             if ((index) == size - 1){
+               Node newNext = end;
+             }
+
+             Node newnode1 = start;
+             int x = 0;
+             while (x < (index)) {
+                 newnode1 = newnode1.getNext();
+                 x++;
+             }
+             Node newNext = newnode1;
+       ///////////////////////////////////////
+        newnode10.setPrevious(newPrev);
+        newnode10.setNext(newNext);
+        newPrev.setNext(newnode10);
+        newNext.setPrevious(newnode10);
    }
-   if (index==size){
-     size = size + 1;
-     add(value);
-   }
-   Node newnode1 = start;
-		for (int i = 0; i < index; i++) {
-			newnode1 = newnode1.getNext();
 
-			if (newnode1 == null) throw new IndexOutOfBoundsException();
-		}
-    Node prev = newnode1.getPrevious();
-		Node next = newnode1.getNext();
-
-		Node newnode = new Node(value);
-		newnode.setPrevious(next.getPrevious());
-		newnode.setNext(prev.getNext());
-
-		prev.setNext(newnode);
-		next.setPrevious(newnode);
-		size++;
-
+   size = size + 1;
    return true;
- }
+}
 
 
  public String get(int index){
