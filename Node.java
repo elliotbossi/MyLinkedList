@@ -6,10 +6,10 @@ public class Node{
  private Node next,prev;
  //write get/set methods for all three instance variables.
 
- public String get(){
-   return  data;
+ public String getData(){
+   return data;
  }
- public void set(String v){
+ public void setData(String v){
    data = v;
  }
 
