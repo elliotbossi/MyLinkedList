@@ -43,6 +43,7 @@ public class MyLinkedList{
      end.setNext(newnode);
      newnode.setPrevious(end);
      end = newnode;
+
    }
    else if (index==0){
 
@@ -50,6 +51,7 @@ public class MyLinkedList{
      start.setPrevious(newnode);
      newnode.setNext(start);
      start = newnode;
+
    }
 
    else{
@@ -57,10 +59,10 @@ public class MyLinkedList{
      Node newnode10 = new Node(value);
      ///////////////////////////////////////
              if ((index-1) == 0){
-               Node newP = start;
+               Node newnode11 = start;
              }
              if ((index-1) == size - 1){
-               Node newP = end;
+               Node newnode11 = end;
              }
 
              Node newnode = start;
@@ -69,13 +71,13 @@ public class MyLinkedList{
                  newnode = newnode.getNext();
                  i++;
              }
-             Node newP = newnode;
+             Node newnode11 = newnode;
      ///////////////////////////////////////
              if ((index) == 0){
-               Node newN = start;
+               Node newnode12 = start;
              }
              if ((index) == size - 1){
-               Node newN = end;
+               Node newnode12 = end;
              }
 
              Node newnode1 = start;
@@ -84,15 +86,16 @@ public class MyLinkedList{
                  newnode1 = newnode1.getNext();
                  x++;
              }
-             Node newN = newnode1;
+             Node newnode12 = newnode1;
        ///////////////////////////////////////
-        newnode10.setPrevious(newP);
-        newnode10.setNext(newN);
-        newP.setNext(newnode10);
-        newN.setPrevious(newnode10);
-   }
+        newnode10.setPrevious(newnode11);
+        newnode10.setNext(newnode12);
+        newnode11.setNext(newnode10);
+        newnode12.setPrevious(newnode10);
 
-   size = size + 1;
+   }
+size = size + 1;
+
    return true;
 }
 
@@ -156,7 +159,60 @@ public class MyLinkedList{
  }
 
  public String remove(int index){
-   return "";
+   if ((index > size-1)||(index < 0)){
+     throw new IndexOutOfBoundsException();
+   }
+   if (size==1){
+     String result = start.getData();
+     start = null;
+     end = null;
+     size = size - 1;
+     return result;
+   }
+   else if (index==0){
+     String result = start.getData();
+     Node start1 = start.getNext();
+     start1.setPrevious(null);
+     start.setNext(null);
+     start = start1;
+     size = size - 1;
+     return result;
+   }
+   else if (index==(size-1)){
+     String result = end.getData();
+     Node end1 = end.getPrevious();
+     end1.setNext(null);
+     end.setPrevious(null);
+     end = end1;
+     size = size - 1;
+     return result;
+   }
+   else{
+     //////
+     if ((index) == 0){
+       Node newnode = start;
+     }
+     if ((index) == size - 1){
+       Node newnode = end;
+     }
+     Node newnode1 = start;
+     int x = 0;
+     while (x < (index)) {
+         newnode1 = newnode1.getNext();
+         x++;
+     }
+     Node newnode = newnode1;
+     ///////
+     String result = newnode.getData();
+     newnode.getPrevious().setNext(newnode.getNext());
+     newnode.getNext().setPrevious(newnode.getPrevious());
+     newnode.setPrevious(null);
+     newnode.setNext(null);
+     size = size - 1;
+     return result;
+
+   }
+
  }
 
  public void extend(MyLinkedList other){
