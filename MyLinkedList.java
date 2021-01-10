@@ -43,7 +43,7 @@ public class MyLinkedList{
      end.setNext(newnode);
      newnode.setPrevious(end);
      end = newnode;
-
+     size = size + 1;
    }
    else if (index==0){
 
@@ -51,7 +51,7 @@ public class MyLinkedList{
      start.setPrevious(newnode);
      newnode.setNext(start);
      start = newnode;
-
+     size = size + 1;
    }
 
    else{
@@ -92,9 +92,8 @@ public class MyLinkedList{
         newnode10.setNext(newnode12);
         newnode11.setNext(newnode10);
         newnode12.setPrevious(newnode10);
-
+        size = size + 1;
    }
-size = size + 1;
 
    return true;
 }
